@@ -75,6 +75,7 @@ void setup()
   motor_speed(255, 255);
   delay(2000);  
 
+  car_stop();
 }
 
 void loop()
