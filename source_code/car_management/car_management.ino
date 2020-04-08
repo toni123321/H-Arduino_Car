@@ -46,11 +46,17 @@ void GPIO_init()
   pinMode(back_R_pin, OUTPUT);
   car_stop();
 }
-  
+
+void motor_speed(int L_speed, int R_speed)
+{
+  analogWrite(L_pin_speed, L_speed);
+  analogWrite(R_pin_speed, R_speed);
+}
+
 void setup()
 {
   GPIO_init();
-  
+    
 
 }
 
