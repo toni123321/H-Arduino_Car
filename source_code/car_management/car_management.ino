@@ -56,7 +56,24 @@ void motor_speed(int L_speed, int R_speed)
 void setup()
 {
   GPIO_init();
-    
+  drive_forward();
+  motor_speed(255, 255);
+  delay(2000);  
+
+  GPIO_init();
+  drive_backward();
+  motor_speed(255, 255);
+  delay(2000); 
+
+  GPIO_init();
+  drive_left();
+  motor_speed(255, 255);
+  delay(2000);  
+
+  GPIO_init();
+  drive_right();
+  motor_speed(255, 255);
+  delay(2000);  
 
 }
 
