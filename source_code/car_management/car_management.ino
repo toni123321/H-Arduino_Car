@@ -56,28 +56,67 @@ void motor_speed(int L_speed, int R_speed)
 void setup()
 {
   GPIO_init();
-  drive_forward();
-  motor_speed(255, 255);
-  delay(2000);  
+  Serial.begin(9600);
+//  drive_forward();
+//  motor_speed(255, 255);
+//  delay(2000);  
+//
+//  GPIO_init();
+//  drive_backward();
+//  motor_speed(255, 255);
+//  delay(2000); 
+//
+//  GPIO_init();]
+//  
+//  drive_left();
+//  motor_speed(255, 255);
+//  delay(2000);  
+//
+//  GPIO_init();
+//  drive_right();
+//  motor_speed(255, 255);
+//  delay(2000);  
+//
+//  car_stop();
+} 
 
-  GPIO_init();
-  drive_backward();
-  motor_speed(255, 255);
-  delay(2000); 
-
-  GPIO_init();
-  drive_left();
-  motor_speed(255, 255);
-  delay(2000);  
-
-  GPIO_init();
-  drive_right();
-  motor_speed(255, 255);
-  delay(2000);  
-
-  car_stop();
-}
-
+char command;
 void loop()
 {
+  if(Serial.available())
+  {
+    command = Serial.read();
+    Serial.println(command);
+  }
+  if(command == '1')
+  {
+    drive_forward();
+    motor_speed(255, 255);
+    delay(100);
+    
+  }
+  else if(command == '2')
+  {
+    drive_backward();
+    motor_speed(255, 255);
+    delay(100);
+    
+  }
+  else if(command == '3')
+  {
+    drive_left();
+    motor_speed(255, 255);
+    delay(100);
+  }
+  else if(command == '4')
+  {
+    drive_right();
+    motor_speed(255, 255);
+    delay(100);
+  }
+  else if(command == '5')
+  {
+    car_stop();
+  }
+  delay(100);
 }
