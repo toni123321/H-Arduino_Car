@@ -56,7 +56,8 @@ void motor_speed(int L_speed, int R_speed)
 void setup()
 {
   GPIO_init();
-  Serial.begin(9600);
+  Serial.begin(115200);
+  
 //  drive_forward();
 //  motor_speed(255, 255);
 //  delay(2000);  
