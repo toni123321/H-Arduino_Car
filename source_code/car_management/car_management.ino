@@ -55,8 +55,10 @@ void motor_speed(int L_speed, int R_speed)
 
 void setup()
 {
+  //Wi-Fi or bluetooth connection via android apps
+  //wifi connection: IP address: 192.168.4.1 port: 9000
   GPIO_init();
-  Serial.begin(115200);
+  Serial.begin(9600);
   
 //  drive_forward();
 //  motor_speed(255, 255);
