@@ -9,3 +9,8 @@
 // Configure pins for motor speed (PWM config)
 #define L_pin_speed 6
 #define R_pin_speed 5
+
+// Configure pins for ultrasonic sensor
+#define Trig_pin 10
+#define Echo_pin 11
+ 

@@ -44,6 +44,9 @@ void GPIO_init()
   pinMode(front_R_pin, OUTPUT);
   pinMode(back_L_pin, OUTPUT);
   pinMode(back_R_pin, OUTPUT);
+
+  pinMode(Echo_pin, INPUT);
+  pinMode(Trig_pin, OUTPUT);
   car_stop();
 }
 
@@ -53,12 +56,47 @@ void motor_speed(int L_speed, int R_speed)
   analogWrite(R_pin_speed, R_speed);
 }
 
+void car_management(char command)
+{
+  if(command == '1')
+  {
+    drive_forward();
+    motor_speed(255, 255);
+    delay(100);
+    
+  }
+  else if(command == '2')
+  {
+    drive_backward();
+    motor_speed(255, 255);
+    delay(100);
+    
+  }
+  else if(command == '3')
+  {
+    drive_left();
+    motor_speed(255, 255);
+    delay(100);
+  }
+  else if(command == '4')
+  {
+    drive_right();
+    motor_speed(255, 255);
+    delay(100);
+  }
+  else if(command == '5')
+  {
+    car_stop();
+  }
+  delay(100);
+}
 void setup()
 {
   //Wi-Fi or bluetooth connection via android apps
   //wifi connection: IP address: 192.168.4.1 port: 9000
   GPIO_init();
-  Serial.begin(9600);
+  
+  Serial.begin(9600); // serial communication at baudrate 9600
   
 //  drive_forward();
 //  motor_speed(255, 255);
@@ -91,35 +129,6 @@ void loop()
     command = Serial.read();
     Serial.println(command);
   }
-  if(command == '1')
-  {
-    drive_forward();
-    motor_speed(255, 255);
-    delay(100);
-    
-  }
-  else if(command == '2')
-  {
-    drive_backward();
-    motor_speed(255, 255);
-    delay(100);
-    
-  }
-  else if(command == '3')
-  {
-    drive_left();
-    motor_speed(255, 255);
-    delay(100);
-  }
-  else if(command == '4')
-  {
-    drive_right();
-    motor_speed(255, 255);
-    delay(100);
-  }
-  else if(command == '5')
-  {
-    car_stop();
-  }
-  delay(100);
+  car_management(command);
+  
 }
