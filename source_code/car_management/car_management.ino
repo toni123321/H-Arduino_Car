@@ -121,6 +121,8 @@ void setup()
 //  car_stop();
 } 
 
+long duration;
+int distance;
 char command;
 void loop()
 {
@@ -130,5 +132,21 @@ void loop()
     Serial.println(command);
   }
   car_management(command);
+
+  // ultrasonic sensor config
+  digitalWrite(Trig_pin, LOW);
+  delayMicroseconds(5);
+
+  digitalWrite(Trig_pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(Trig_pin, LOW);
+
+  duration = pulseIn(Echo_pin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance = ");
+  Serial.print(duration/100.00);
+  Serial.println(" cm");
   
+  delay(5000);
 }
