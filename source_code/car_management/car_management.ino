@@ -1,5 +1,13 @@
+#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
 
 #include "pins_config.h"
+
+
+LiquidCrystal_I2C lcd = LiquidCrystal_I2C(0x3F,16,2);
+long duration;
+int distance;
+char command;
 
 void drive_forward()
 {
@@ -90,6 +98,7 @@ void car_management(char command)
   }
   delay(100);
 }
+
 void setup()
 {
   //Wi-Fi or bluetooth connection via android apps
@@ -121,9 +130,6 @@ void setup()
 //  car_stop();
 } 
 
-long duration;
-int distance;
-char command;
 void loop()
 {
   if(Serial.available())
@@ -144,9 +150,26 @@ void loop()
   duration = pulseIn(Echo_pin, HIGH);
   distance = duration * 0.034 / 2;
 
-  Serial.print("Distance = ");
-  Serial.print(duration/100.00);
-  Serial.println(" cm");
+//  Serial.print("Distance = ");
+//  Serial.print(duration/100.00);
+//  Serial.println(" cm");
+//  delay(50);
+
+  // start the LCD display:
+  lcd.begin();
+  lcd.backlight();
   
-  delay(5000);
+  lcd.clear(); //clear the screen
+  lcd.setCursor(0,0); // Set the cursor to column 1, line 1 (counting starts at zero)
+  
+  // prints the distance, measured by ultrasonic sensor, on the LCD display
+  lcd.print("    Distance    "); // put this string on the middle of the line
+
+  //go on the next line
+  lcd.setCursor(6,1);  
+  lcd.print(distance); 
+  lcd.print("cm"); 
+  
+  delay(50);
+
 }
