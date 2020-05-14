@@ -13,3 +13,5 @@
 // Configure pins for ultrasonic sensor
 #define Trig_pin 10
 #define Echo_pin 11
+
+#define buzzer_pin 13

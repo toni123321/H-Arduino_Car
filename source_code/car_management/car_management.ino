@@ -99,8 +99,19 @@ void car_management(char command)
   delay(100);
 }
 
+void buzzer_on()   //open buzzer
+{
+  digitalWrite(buzzer_pin, LOW);
+}
+void buzzer_off()  //close buzzer
+{
+  digitalWrite(buzzer_pin, HIGH);
+}
+
 void setup()
 {
+  buzzer_off();
+  
   //Wi-Fi or bluetooth connection via android apps
   //wifi connection: IP address: 192.168.4.1 port: 9000
   GPIO_init();
@@ -132,6 +143,7 @@ void setup()
 
 void loop()
 {
+  buzzer_off();
   if(Serial.available())
   {
     command = Serial.read();
@@ -149,6 +161,10 @@ void loop()
 
   duration = pulseIn(Echo_pin, HIGH);
   distance = duration * 0.034 / 2;
+  if(distance  < 8)
+  {
+    buzzer_on();
+  }
 
 //  Serial.print("Distance = ");
 //  Serial.print(duration/100.00);
