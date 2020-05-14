@@ -95,6 +95,7 @@ void car_management(char command)
   else if(command == '5')
   {
     car_stop();
+    delay(100);
   }
   delay(100);
 }
