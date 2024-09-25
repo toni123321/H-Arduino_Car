@@ -1,2 +1,2 @@
 # Arduino_Car
-Porject for making a car with arduino with parktronic
+A high school project to develop a car with parktronic, programmed using Arduino
